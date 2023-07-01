@@ -1,2 +1,3 @@
 # ecow-template
-Template repo for ECOW projects
+
+Simple C++ module for fetching system time
