@@ -1,5 +1,5 @@
 module;
-#include <sysinfoapi.h>
+#include <windows.h>
 
 module sitime;
 
@@ -13,15 +13,15 @@ struct timepoint {
 
 void tp_deleter::operator()(timepoint *p) { delete p; }
 
-[[nodiscard]] ULARGE_INTEGER current_timestamp() noexcept {
+[[nodiscard]] ULONGLONG current_timestamp() noexcept {
   FILETIME ft{};
   GetSystemTimeAsFileTime(&ft);
 
   // Following rekarks here:
   // https://learn.microsoft.com/en-us/windows/win32/api/minwinbase/ns-minwinbase-filetime
   ULARGE_INTEGER uli{};
-  uli.u.LowPart = ft.LowPart;
-  uli.u.HighPart = ft.HighPart;
+  uli.u.LowPart = ft.dwLowDateTime;
+  uli.u.HighPart = ft.dwHighDateTime;
   return uli.QuadPart;
 }
 
