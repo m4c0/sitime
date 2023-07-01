@@ -8,8 +8,11 @@ auto sitime() {
   m->add_wsdep("hai", hai());
 
   m->for_feature(android_ndk).add_impl("android");
-  m->for_feature(objective_c).add_impl("apple");
   m->for_feature(windows_api).add_impl("windows");
+
+  auto & objc = m->for_feature(objective_c);
+  objc.add_framework("CoreFoundation");
+  objc.add_impl("apple");
   
   return m;
 }

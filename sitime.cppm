@@ -2,7 +2,7 @@ export module sitime;
 import hai;
 
 namespace sitime {
-class timepoint;
+struct timepoint;
 
 struct tp_deleter {
   void operator()(timepoint *);
