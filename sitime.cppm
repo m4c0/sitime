@@ -1,17 +1,23 @@
 export module sitime;
+import hai;
 
 namespace sitime {
-export [[nodiscard]] long current_timestamp() noexcept;
+class timepoint;
+
+struct tp_deleter {
+  void operator()(timepoint *);
+};
 
 export class stopwatch {
-  long m_start;
+  using ptr = hai::value_holder<timepoint *, tp_deleter>;
+
+  ptr m_start;
+
+  [[nodiscard]] ptr current_timestamp() noexcept;
 
 public:
   stopwatch() : m_start{current_timestamp()} {}
 
-  [[nodiscard]] int millis() const noexcept {
-    // TODO: check if we somehow overflow here
-    return static_cast<int>(current_timestamp() - m_start);
-  }
+  [[nodiscard]] int millis() const noexcept; 
 };
 } // namespace sitime
