@@ -8,4 +8,6 @@ int main() {
   silog::log(silog::info, "Before sleeping: %d", w.millis());
   sleep(1);
   silog::log(silog::info, "After sleeping: %d", w.millis());
+  if (w.millis() < 990 || w.millis() > 1100)
+    throw "Time scale is not correct";
 }
