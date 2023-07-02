@@ -9,6 +9,7 @@ auto sitime() {
 
   m->for_feature(android_ndk).add_impl("android");
   m->for_feature(windows_api).add_impl("windows");
+  m->for_feature(webassembly).add_impl("wasm");
 
   auto & objc = m->for_feature(objective_c);
   objc.add_framework("CoreFoundation");
