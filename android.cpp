@@ -4,10 +4,6 @@ using namespace sitime;
 
 void tp_deleter::operator()(timepoint *) {}
 
-stopwatch::ptr stopwatch::current_timestamp() noexcept {
-  return {};
-}
+stopwatch::ptr stopwatch::current_timestamp() noexcept { return {}; }
 
-int stopwatch::millis() const noexcept {
-  return 0;
-}
+int stopwatch::millis() const noexcept { return 0; }
