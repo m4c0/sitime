@@ -20,4 +20,6 @@ public:
 
   [[nodiscard]] int millis() const noexcept; 
 };
+
+export void sleep(unsigned secs) noexcept;
 } // namespace sitime

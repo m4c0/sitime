@@ -14,7 +14,7 @@ struct timepoint {
 void tp_deleter::operator()(timepoint *p) { delete p; }
 
 stopwatch::ptr stopwatch::current_timestamp() noexcept {
-  return stopwatch::ptr {new timepoint{CFAbsoluteTimeGetCurrent()}};
+  return stopwatch::ptr{new timepoint{CFAbsoluteTimeGetCurrent()}};
 }
 
 int stopwatch::millis() const noexcept {
@@ -23,3 +23,5 @@ int stopwatch::millis() const noexcept {
   auto e = scale * CFAbsoluteTimeGetCurrent();
   return static_cast<int>(e - s);
 }
+
+void sitime::sleep(unsigned secs) noexcept { ::sleep(secs); }

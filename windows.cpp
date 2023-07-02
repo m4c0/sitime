@@ -34,3 +34,5 @@ int stopwatch::millis() const noexcept {
   auto e = ::current_timestamp();
   return static_cast<int>((e - s) / 10);
 }
+
+void sitime::sleep(unsigned secs) noexcept { SleepEx(secs * 1000, TRUE); }
