@@ -18,7 +18,8 @@ stopwatch::ptr stopwatch::current_timestamp() noexcept {
 }
 
 int stopwatch::millis() const noexcept {
-  auto s = 100.0 * (*m_start)->time;
-  auto e = 100.0 * CFAbsoluteTimeGetCurrent();
+  constexpr const auto scale = 1000.0f; // seconds to millis
+  auto s = scale * (*m_start)->time;
+  auto e = scale * CFAbsoluteTimeGetCurrent();
   return static_cast<int>(e - s);
 }
