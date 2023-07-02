@@ -16,5 +16,5 @@ int main(int argc, char **argv) {
   all->add_ref(test);
   all->add_unit<sys>(test->executable().string());
 
-  return run_main(test, argc, argv);
+  return run_main(all, argc, argv);
 }
