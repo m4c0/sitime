@@ -1,6 +1,16 @@
 export module sitime;
 import hai;
 
+#if __APPLE__
+#pragma ecow add_impl apple
+#elif __ANDROID__
+#pragma ecow add_impl android
+#elif _WIN32
+#pragma ecow add_impl windows
+#else
+#pragma ecow add_impl wasm
+#endif
+
 namespace sitime {
 struct timepoint;
 
@@ -18,7 +28,7 @@ export class stopwatch {
 public:
   stopwatch() : m_start{current_timestamp()} {}
 
-  [[nodiscard]] int millis() const noexcept; 
+  [[nodiscard]] int millis() const noexcept;
 };
 
 export void sleep(unsigned secs) noexcept;
