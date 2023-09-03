@@ -41,4 +41,4 @@ int stopwatch::millis() const noexcept {
   return static_cast<int>((e - s) / ft_scale);
 }
 
-void sitime::sleep(unsigned secs) noexcept { SleepEx(secs * 1000, TRUE); }
+void sitime::sleep(unsigned secs) noexcept { SleepEx(secs * 1000, FALSE); }
