@@ -2,13 +2,13 @@ export module sitime;
 import hai;
 
 #if __APPLE__
-#pragma ecow add_impl apple
+#pragma leco add_impl apple
 #elif __ANDROID__
-#pragma ecow add_impl android
+#pragma leco add_impl android
 #elif _WIN32
-#pragma ecow add_impl windows
+#pragma leco add_impl windows
 #else
-#pragma ecow add_impl wasm
+#pragma leco add_impl wasm
 #endif
 
 namespace sitime {
