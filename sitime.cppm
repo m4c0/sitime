@@ -32,4 +32,5 @@ public:
 };
 
 export void sleep(unsigned secs) noexcept;
+export void sleep_ms(unsigned ms) noexcept;
 } // namespace sitime

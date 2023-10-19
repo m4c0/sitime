@@ -42,3 +42,4 @@ int stopwatch::millis() const noexcept {
 }
 
 void sitime::sleep(unsigned secs) noexcept { SleepEx(secs * 1000, FALSE); }
+void sitime::sleep_ms(unsigned ms) noexcept { SleepEx(ms, FALSE); }
