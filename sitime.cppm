@@ -3,6 +3,7 @@ import hai;
 
 #if __APPLE__
 #pragma leco add_impl apple
+#pragma leco add_framework CoreFoundation
 #elif __ANDROID__
 #pragma leco add_impl android
 #elif _WIN32
