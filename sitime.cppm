@@ -8,8 +8,8 @@ import hai;
 #pragma leco add_impl android
 #elif _WIN32
 #pragma leco add_impl windows
-#else
-#pragma leco add_impl wasm
+#elif __linux__
+#pragma leco add_impl linux
 #endif
 
 namespace sitime {
