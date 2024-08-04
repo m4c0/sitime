@@ -1,15 +1,17 @@
 export module sitime;
 import hai;
 
-#if __APPLE__
+#if LECO_TARGET_APPLE
 #pragma leco add_impl apple
 #pragma leco add_framework CoreFoundation
-#elif __ANDROID__
+#elif LECO_TARGET_ANDROID
 #pragma leco add_impl android
-#elif _WIN32
+#elif LECO_TARGET_WINDOWS
 #pragma leco add_impl windows
-#elif __linux__
+#elif LECO_TARGET_LINUX
 #pragma leco add_impl linux
+#elif LECO_TARGET_WASM
+#pragma leco add_impl wasm
 #endif
 
 namespace sitime {
@@ -24,14 +26,14 @@ export class stopwatch {
 
   ptr m_start;
 
-  [[nodiscard]] ptr current_timestamp() noexcept;
+  [[nodiscard]] ptr current_timestamp();
 
 public:
   stopwatch() : m_start{current_timestamp()} {}
 
-  [[nodiscard]] int millis() const noexcept;
+  [[nodiscard]] int millis() const;
 };
 
-export void sleep(unsigned secs) noexcept;
-export void sleep_ms(unsigned ms) noexcept;
+export void sleep(unsigned secs);
+export void sleep_ms(unsigned ms);
 } // namespace sitime

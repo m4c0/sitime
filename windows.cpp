@@ -13,7 +13,7 @@ struct timepoint {
 
 void tp_deleter::operator()(timepoint *p) { delete p; }
 
-[[nodiscard]] ULONGLONG current_timestamp() noexcept {
+[[nodiscard]] ULONGLONG current_timestamp() {
   FILETIME ft{};
   GetSystemTimeAsFileTime(&ft);
 
@@ -25,11 +25,11 @@ void tp_deleter::operator()(timepoint *p) { delete p; }
   return uli.QuadPart;
 }
 
-stopwatch::ptr stopwatch::current_timestamp() noexcept {
+stopwatch::ptr stopwatch::current_timestamp() {
   return stopwatch::ptr{new timepoint{::current_timestamp()}};
 }
 
-int stopwatch::millis() const noexcept {
+int stopwatch::millis() const {
   // GetSystemTimeAsFileTime returns time in 100-nanosecond intervals since
   // 1601. Sounds like some senior engineer went very creative. Maybe I can find
   // a reason for the 100ns precision, but 1601? Why? Who needs that in
@@ -41,5 +41,5 @@ int stopwatch::millis() const noexcept {
   return static_cast<int>((e - s) / ft_scale);
 }
 
-void sitime::sleep(unsigned secs) noexcept { SleepEx(secs * 1000, FALSE); }
-void sitime::sleep_ms(unsigned ms) noexcept { SleepEx(ms, FALSE); }
+void sitime::sleep(unsigned secs) { SleepEx(secs * 1000, FALSE); }
+void sitime::sleep_ms(unsigned ms) { SleepEx(ms, FALSE); }
