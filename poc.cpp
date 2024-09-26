@@ -2,11 +2,7 @@
 import silog;
 import sitime;
 
-static void log() { silog::log(silog::info, "timer"); }
-
 int main() {
-  sitime::timer t { 500, log };
-
   sitime::stopwatch w{};
   silog::log(silog::info, "Before sleeping: %d", w.millis());
   sitime::sleep(1);
