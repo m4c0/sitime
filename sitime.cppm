@@ -16,9 +16,11 @@ import hai;
 
 namespace sitime {
 struct timepoint;
+struct timer_ptr;
 
 struct tp_deleter {
   void operator()(timepoint *);
+  void operator()(timer_ptr *);
 };
 
 export class stopwatch {
@@ -32,6 +34,17 @@ public:
   stopwatch() : m_start{current_timestamp()} {}
 
   [[nodiscard]] int millis() const;
+};
+export class timer {
+  using ptr = hai::value_holder<timer_ptr *, tp_deleter>;
+
+  hai::fn<void> m_fn;
+  ptr m_ptr;
+
+  [[nodiscard]] ptr create_ptr(unsigned ms);
+
+public:
+  timer(unsigned ms, hai::fn<void> fn) : m_fn { fn }, m_ptr { create_ptr(ms) } {}
 };
 
 export void sleep(unsigned secs);
