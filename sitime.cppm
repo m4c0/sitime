@@ -32,6 +32,7 @@ public:
   stopwatch() : m_start{current_timestamp()} {}
 
   [[nodiscard]] int millis() const;
+  [[nodiscard]] float secs() const { return millis() / 1000.0f; };
 };
 
 export void sleep(unsigned secs);
