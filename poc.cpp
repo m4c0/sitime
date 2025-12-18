@@ -3,6 +3,9 @@ import silog;
 import sitime;
 
 int main() {
+  sitime::stopwatch cur { 0 };
+  silog::infof("Current timestamp: %d", cur.millis());
+
   sitime::stopwatch w{};
   silog::log(silog::info, "Before sleeping: %d", w.millis());
   sitime::sleep(1);
