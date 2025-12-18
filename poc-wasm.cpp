@@ -10,6 +10,7 @@ static sitime::stopwatch w{};
 
 int main() {
   silog::log(silog::info, "Before sleeping: %d", w.millis());
-  vaselin::set_timeout([] { silog::log(silog::info, "After sleeping: %d", w.millis()); },
-              1000);
+  vaselin::set_timeout(
+      [](auto) { silog::log(silog::info, "After sleeping: %d", w.millis()); },
+      nullptr, 1000);
 }

@@ -1,5 +1,5 @@
 export module sitime;
-import hai;
+import traits;
 
 #if LECO_TARGET_APPLE
 #pragma leco add_impl apple
@@ -14,27 +14,19 @@ import hai;
 #pragma leco add_impl wasm
 #endif
 
+using namespace traits::ints;
+
 namespace sitime {
-struct timepoint;
-
-struct tp_deleter {
-  void operator()(timepoint *);
-};
-
-export class stopwatch {
-  using ptr = hai::value_holder<timepoint *, tp_deleter>;
-
-  ptr m_start;
-
-  [[nodiscard]] ptr current_timestamp();
-
-public:
-  stopwatch() : m_start{current_timestamp()} {}
-
-  [[nodiscard]] int millis() const;
-  [[nodiscard]] float secs() const { return millis() / 1000.0f; };
-};
-
-export void sleep(unsigned secs);
-export void sleep_ms(unsigned ms);
+  export [[nodiscard]] uint64_t current_timestamp();
+  
+  export class stopwatch {
+    uint64_t m_start = current_timestamp();
+  
+  public:
+    [[nodiscard]] int millis() const { return current_timestamp() - m_start; }
+    [[nodiscard]] float secs() const { return millis() / 1000.0f; };
+  };
+  
+  export void sleep(unsigned secs);
+  export void sleep_ms(unsigned ms);
 } // namespace sitime
