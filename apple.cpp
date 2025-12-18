@@ -1,5 +1,7 @@
 module;
-#include <CoreFoundation/CoreFoundation.h>
+extern "C" int sleep(int);
+extern "C" int usleep(int);
+extern "C" double CFAbsoluteTimeGetCurrent();
 
 module sitime;
 
