@@ -24,7 +24,7 @@ namespace sitime {
   
   public:
     stopwatch() = default;
-    consteval stopwatch(uint64_t v) : m_start { v } {}
+    constexpr stopwatch(uint64_t v) : m_start { v } {}
 
     [[nodiscard]] constexpr auto start_timestamp() const { return m_start; }
 
