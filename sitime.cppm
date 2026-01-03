@@ -26,6 +26,8 @@ namespace sitime {
     stopwatch() = default;
     consteval stopwatch(uint64_t v) : m_start { v } {}
 
+    [[nodiscard]] constexpr auto start_timestamp() const { return m_start; }
+
     [[nodiscard]] int millis() const { return current_timestamp() - m_start; }
     [[nodiscard]] float secs() const { return millis() / 1000.0f; };
   };
